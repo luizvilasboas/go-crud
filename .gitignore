@@ -1,2 +1,5 @@
 # Air temporary build folder
 /tmp/
+
+# Local .env keys
+.env.local
