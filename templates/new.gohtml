@@ -1,0 +1,67 @@
+{{ define "title" }}Criar produto{{ end }}
+
+{{ define "content" }}
+<div class="jumbotron jumbotron-fluid">
+  <div>
+    <h1 class="display-5">Novo produto</h1>
+    <p class="lead">Insira os detalhes</p>
+  </div>
+</div>
+<form class="d-flex flex-column gap-3" method="post" action="/new">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <label for="name">Nome:</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Escova de dentes"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <label for="description">Descrição:</label>
+        <input
+          type="text"
+          name="description"
+          class="form-control"
+          placeholder="Escova de dentes limpeza suave da Colgate"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label for="price">Preço:</label>
+        <input
+          type="number"
+          name="price"
+          class="form-control"
+          step="0.01"
+          placeholder="10"
+        />
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label for="quantity">Quantidade:</label>
+        <input
+          type="number"
+          name="quantity"
+          class="form-control"
+          placeholder="100"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="mt-2 d-flex gap-2">
+    <button type="submit" value="salvar" class="btn btn-primary">Salvar</button>
+    <a class="btn btn-secondary" href="/">Voltar</a>
+  </div>
+</form>
+{{ end }}

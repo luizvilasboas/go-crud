@@ -9,8 +9,6 @@ import (
 	"gitlab.com/alura-courses-code/golang/web-crud/models"
 )
 
-var templates = template.Must(template.ParseGlob("templates/*.html"))
-
 func HandleIndex(w http.ResponseWriter, r *http.Request) {
 	products, err := models.GetAllProducts()
 	if err != nil {
@@ -19,7 +17,18 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = templates.ExecuteTemplate(w, "Index", products)
+	baseTemplate, err := template.ParseFiles(
+		"templates/base.gohtml",
+		"templates/index.gohtml",
+	)
+
+	if err != nil {
+		log.Println("Error rendering template:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = baseTemplate.Execute(w, products)
 	if err != nil {
 		log.Println("Error rendering template:", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -28,11 +37,21 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 
 func HandleNew(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		err := templates.ExecuteTemplate(w, "New", nil)
+		baseTemplate, err := template.ParseFiles(
+			"templates/base.gohtml",
+			"templates/new.gohtml",
+		)
 
 		if err != nil {
 			log.Println("Error rendering template:", err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+
+		err = baseTemplate.Execute(w, nil)
+		if err != nil {
+			log.Println("Error rendering template:", err)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		}
 	} else if r.Method == "POST" {
 		name := r.FormValue("name")
