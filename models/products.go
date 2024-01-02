@@ -80,3 +80,41 @@ func DeleteProductById(id int) error {
 
 	return nil
 }
+
+func GetProductById(id int) (Product, error) {
+	database := db.ConnectDatabase()
+	defer database.Close()
+
+	query := "SELECT id, name, description, price, quantity FROM products WHERE id = $1"
+
+	row := database.QueryRow(query, id)
+
+	var p Product
+
+	err := row.Scan(&p.Id, &p.Name, &p.Description, &p.Price, &p.Quantity)
+	if err != nil {
+		return Product{}, err
+	}
+
+	return p, nil
+}
+
+func UpdateProduct(p Product) error {
+	database := db.ConnectDatabase()
+	defer database.Close()
+
+	query := "UPDATE products SET name = $1, description = $2, price = $3, quantity = $4 WHERE id = $5"
+	stmt, err := database.Prepare(query)
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(p.Name, p.Description, p.Price, p.Quantity, p.Id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
