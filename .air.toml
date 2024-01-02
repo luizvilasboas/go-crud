@@ -1,0 +1,16 @@
+[build]
+  cmd = "go build -o tmp/web-crud main.go"
+  bin = "./tmp/web-crud"
+  exclude = ["^assets", "^static", "^templates", "^bin", "^node_modules"]
+
+[watcher]
+  dirs = ["./"]
+
+[env]
+  APP_ENV = "development"
+
+[delay]
+  after = 1000
+
+[web]
+  addr = ":8080"
