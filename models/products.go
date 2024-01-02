@@ -59,3 +59,24 @@ func InsertProduct(p Product) error {
 
 	return nil
 }
+
+func DeleteProductById(id int) error {
+	database := db.ConnectDatabase()
+	defer database.Close()
+
+	query := "DELETE FROM products WHERE id = $1"
+
+	stmt, err := database.Prepare(query)
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

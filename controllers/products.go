@@ -27,7 +27,6 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleNew(w http.ResponseWriter, r *http.Request) {
-
 	if r.Method == "GET" {
 		err := templates.ExecuteTemplate(w, "New", nil)
 
@@ -61,4 +60,22 @@ func HandleNew(w http.ResponseWriter, r *http.Request) {
 
 		http.Redirect(w, r, "/", http.StatusMovedPermanently)
 	}
+}
+
+func HandleDelete(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+
+	newId, err := strconv.Atoi(id)
+	if err != nil {
+		log.Println("Error parsing id:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	err = models.DeleteProductById(newId)
+	if err != nil {
+		log.Println("Error deleting product:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
