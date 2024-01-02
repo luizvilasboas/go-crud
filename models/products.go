@@ -1,8 +1,6 @@
 package models
 
-import (
-	"database/sql"
-)
+import "gitlab.com/alura-courses-code/golang/web-crud/db"
 
 type Product struct {
 	Id          int
@@ -12,9 +10,12 @@ type Product struct {
 	Quantity    int
 }
 
-func GetAllProducts(db *sql.DB) ([]Product, error) {
+func GetAllProducts() ([]Product, error) {
+	database := db.ConnectDatabase()
+	defer database.Close()
+
 	query := "SELECT id, name, description, price, quantity FROM products"
-	rows, err := db.Query(query)
+	rows, err := database.Query(query)
 
 	if err != nil {
 		return nil, err
@@ -36,4 +37,25 @@ func GetAllProducts(db *sql.DB) ([]Product, error) {
 	}
 
 	return products, nil
+}
+
+func InsertProduct(p Product) error {
+	database := db.ConnectDatabase()
+	defer database.Close()
+
+	query := "INSERT INTO products (name, description, price, quantity) VALUES ($1, $2, $3, $4)"
+
+	stmt, err := database.Prepare(query)
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(p.Name, p.Description, p.Price, p.Quantity)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
