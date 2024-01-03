@@ -13,8 +13,8 @@ To ensure smooth operation of serenatto, make sure you have the following depend
 
 1. After installing `go`, clone the project and navigate to the project directory with the following commands:
 ```
-git clone https://gitlab.com/alura-courses-code/golang/web-crud.git
-cd web-crud
+git clone https://gitlab.com/alura-courses-code/golang/go-crud.git
+cd go-crud
 ```
 
 2. Install all dependencies required to run the project, especially `air`:
@@ -27,7 +27,7 @@ go mod tidy
 air
 ```
 
-**OBS**: Create and configure a PostgreSQL database, and make the connection in a .env.local file. You can use the [.env](https://gitlab.com/alura-courses-code/golang/web-crud/-/blob/main/.env) as an example.
+**OBS**: Create and configure a PostgreSQL database, and make the connection in a .env.local file. You can use the [.env](https://gitlab.com/alura-courses-code/golang/go-crud/-/blob/main/.env) as an example.
 
 ## Contributing
 
@@ -35,4 +35,4 @@ If you wish to contribute to this project, feel free to open a merge request. We
 
 ## License
 
-This project is licensed under the [MIT](https://gitlab.com/alura-courses-code/golang/web-crud/-/blob/main/LICENSE). Refer to the LICENSE file for more details.
+This project is licensed under the [MIT](https://gitlab.com/alura-courses-code/golang/go-crud/-/blob/main/LICENSE). Refer to the LICENSE file for more details.
