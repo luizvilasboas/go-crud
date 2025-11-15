@@ -1,38 +1,67 @@
-# web-crud
+# go-crud
 
-This project was developed as part of the Go programming language training at Alura. It involves the creation of a full-stack CRUD web application using the Go SDL.
+> A full-stack CRUD web application built with Go and PostgreSQL.
 
-# Dependencies
+## About the Project
 
-To ensure smooth operation of serenatto, make sure you have the following dependencies installed:
+This project is a full-stack web application that demonstrates Create, Read, Update, and Delete (CRUD) functionality. It was developed as part of a Go programming language training course at Alura.
 
-- Go (version 1.21)
-- PostgreSQL 16.1
+## Tech Stack
 
-# Usage
+*   [Go](https://golang.org/)
+*   [PostgreSQL](https://www.postgresql.org/)
+*   [Air](https://github.com/cosmtrek/air) (for live reloading)
 
-1. After installing `go`, clone the project and navigate to the project directory with the following commands:
-```
-git clone https://github.com/luizvilasboas/go-crud.git
-cd go-crud
-```
+## Usage
 
-2. Install all dependencies required to run the project, especially `air`:
-```
-go mod tidy
-```
+Below are the instructions for you to set up and run the project locally.
 
-3. Run the project and open `localhost:8080` in your browser using the following command:
-```
+### Prerequisites
+
+You need to have the following software installed:
+
+*   [Go](https://golang.org/dl/) (version 1.21 or higher)
+*   [PostgreSQL](https://www.postgresql.org/download/) (version 16.1 or higher)
+*   [Air](https://github.com/cosmtrek/air#installation) (for development)
+
+### Installation and Setup
+
+Follow the steps below:
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/luizvilasboas/go-crud.git
+    ```
+
+2.  **Navigate to the project directory**
+    ```bash
+    cd go-crud
+    ```
+
+3.  **Install Go dependencies**
+    ```bash
+    go mod tidy
+    ```
+
+4.  **Configure the database**
+    *   Ensure your PostgreSQL server is running.
+    *   Create a new database for the project.
+    *   Create a `.env.local` file in the project root (you can use the `.env` file as a template) and add your database connection details.
+
+### Workflow
+
+To run the project with live reloading, use `air`:
+```bash
 air
 ```
-
-**OBS**: Create and configure a PostgreSQL database, and make the connection in a .env.local file. You can use the [.env](https://github.com/luizvilasboas/go-crud/blob/main/.env) as an example.
+The application will be available in your browser at `http://localhost:8080`.
 
 ## Contributing
 
-If you wish to contribute to this project, feel free to open a merge request. We welcome all forms of contribution!
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request.
 
 ## License
 
-This project is licensed under the [MIT](https://github.com/luizvilasboas/go-crud/blob/main/LICENSE). Refer to the LICENSE file for more details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
